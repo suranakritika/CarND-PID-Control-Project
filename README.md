@@ -64,6 +64,50 @@ for instructions and the project rubric.
 * You don't have to follow this directory structure, but if you do, your work
   will span all of the .cpp files here. Keep an eye out for TODOs.
 
+# Rubric Points
+***
+## Compilation
+---
+## Your code should compile.
+The code compiled without any error
+## Implementation
+---
+## The PID procedure follows what was taught in the lessons.
+
+Yes, the code follows the base algorithm, propotional, derivative and integral was calculated in the same way it was taught in the lessons.
+
+## Reflection
+---
+## 1. Describe the effect each of the P, I, D components had in your implementation.
+## P Component
+```
+-tau_p * cte
+```
+P component keeps the steering angle in proportion to it's Cross Track Error. If the car goes slightly right or slightly left the P component brings the car back to centre.
+
+## D Component
+```
+diff_cte = cte - prev_cte
+prev_cte = cte
+- tau_d * diff_cte
+```
+D component or differencial aims at flattening the error trajectory. Thus reducing overshooting of the P Component. This means when the car turned enough to reduce the error, it will help not to overshoot through the x axis.
+
+## I Component
+```
+int_cte += cte
+tau_i * int_cte
+```
+It’s the integral or sum of error to deal with systematic biases. An integral term increases action in relation not only to the error but also the time for which it has persisted.
+
+## 2. Describe how the final hyperparameters were chosen.
+The Final Parameters were choosen based on trial and error. First I made sure that car goes in the straight line by initialising the P, I, D as 0.0 and then added Proportional term to drive the car in the centre lane and then worked with Integral and Differential Compotent when the car was overshooting.
+
+## Simulation
+---
+## The vehicle must successfully drive a lap around the track.
+No tire may leave the drivable portion of the track surface. The car may not pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle).
+
 ## Call for IDE Profiles Pull Requests
 
 Help your fellow students!
@@ -95,4 +139,3 @@ still be compilable with cmake and make./
 
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
